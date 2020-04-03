@@ -1,0 +1,61 @@
+name: next-gh-pages
+on: [push, pull_request]
+env: 
+  PUBLISH_DIR: out
+  COMMIT_AUTHOR: rjoydip (Joydip Roy)
+  PRESONAL_ACCESS_TOKEN: ${{secrets.PRESONAL_ACCESS_TOKEN}}
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [10.x] 
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v1
+
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                node-version: ${{ matrix.node-version }}
+
+            - name: Install Packages
+              run: yarn install
+
+            - name: Build Packages
+              run: yarn deploy
+
+            - name: GitHub Pages Deploy
+              uses: appleboy/gh-pages-action@v0.0.2
+              with:
+                username: ${{ secrets.USERNAME }}
+                password: ${{ env.PRESONAL_ACCESS_TOKEN }}
+                remote_url: https://${{env.PRESONAL_ACCESS_TOKEN}}@github.com/${{secrets.USERNAME}}/github-ci-test.git
+                commit_author: ${{ env.COMMIT_AUTHOR }}
+                commit_author_email: ${{ secrets.EMAILID }}
+                pages_directory: ${{ env.PUBLISH_DIR }}
+
+            - name: ZEIT Now Deployment
+              uses: amondnet/now-deployment@v2.0.1
+              with:
+                zeit-token: ${{ env.ZEIT_TOKEN }}
+                github-token: ${{ env.PRESONAL_ACCESS_TOKEN }}
+                now-args: '--prod'
+                now-org-id: ${{ env.ZEIT_ORG_ID}}
+                now-project-id: ${{ env.ZEIT_PROJECT_ID}}
+              env:
+                ZEIT_TOKEN: ${{secrets.ZEIT_TOKEN}}
+                ZEIT_ORG_ID: ${{secrets.ZEIT_ORG_ID}}
+                ZEIT_PROJECT_ID: ${{secrets.ZEIT_PROJECT_ID}}
+                
+            - name: Deploy to Netlify
+              uses: nwtgck/actions-netlify@v1.0.9
+              with:
+                production-branch: master
+                publish-dir: ${{ env.PUBLISH_DIR }}
+                github-token: ${{ env.PRESONAL_ACCESS_TOKEN }}
+                deploy-message: "Deploy from GitHub Actions"
+              env:
+                NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+                NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
