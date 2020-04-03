@@ -3,38 +3,33 @@ import Head from "next/head";
 const Home = () => (
   <div className="container">
     <Head>
-      <title>Next gh-pages</title>
+      <title>Next app hosting</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
     <main>
       <h1 className="title">
-        Welcome to <a href="/g">next-gh-pages!</a>
+        Welcome to <a href="/">next.js</a> multiples hosting application!
       </h1>
 
-      <p className="description">Deploying next.js application in gh-pages</p>
+      <p className="description">
+        Deploying/Hosting <code>next.js</code> application in <code>gh-pages</code>, <code>zeit</code> and <code>netlify</code>.
+      </p>
 
       <div className="grid">
         <a href="/" className="card">
-          <h3>Documentation &rarr;</h3>
-          <p>Find in-depth information about Next.js features and API.</p>
+          <h3>gh-pages</h3>
+          <p>GitHub Pages is a static site hosting service that takes HTML, CSS, and JavaScript files straight from a repository on GitHub.</p>
         </a>
 
         <a href="/" className="card">
-          <h3>Learn &rarr;</h3>
-          <p>Learn about Next.js in an interactive course with quizzes!</p>
+          <h3>Zeit</h3>
+          <p>We build products for developers and designers. And those who aspire to become one.</p>
         </a>
 
         <a href="/" className="card">
-          <h3>Examples &rarr;</h3>
-          <p>Discover and deploy boilerplate example Next.js projects.</p>
-        </a>
-
-        <a href="/" className="card">
-          <h3>Deploy &rarr;</h3>
-          <p>
-            Instantly deploy your Next.js site to a public URL with ZEIT Now.
-          </p>
+          <h3>Netlify</h3>
+          <p>Netlify is a web developer platform that multiplies productivity.</p>
         </a>
       </div>
     </main>
@@ -56,7 +51,7 @@ const Home = () => (
       }
 
       main {
-        padding: 5rem 0;
+        padding: 2rem 0;
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -102,7 +97,7 @@ const Home = () => (
       .title {
         margin: 0;
         line-height: 1.15;
-        font-size: 4rem;
+        font-size: 2.5rem;
       }
 
       .title,
@@ -112,14 +107,14 @@ const Home = () => (
 
       .description {
         line-height: 1.5;
-        font-size: 1.5rem;
+        font-size: 1.1rem;
       }
 
       code {
         background: #fafafa;
         border-radius: 5px;
         padding: 0.75rem;
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
           DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
       }
@@ -129,7 +124,6 @@ const Home = () => (
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
-
         max-width: 800px;
         margin-top: 3rem;
       }
@@ -161,7 +155,7 @@ const Home = () => (
       .card p {
         margin: 0;
         font-size: 1.25rem;
-        line-height: 1.5;
+        line-height: 1.1;
       }
 
       @media (max-width: 600px) {
