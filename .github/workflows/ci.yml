@@ -1,4 +1,7 @@
-name: next-gh-pages
+env:
+  PROJECT_NAME: gitci-next
+
+name: ${{ env.PROJECT_NAME }}
 on: [push, pull_request]
 env: 
   PUBLISH_DIR: out
@@ -32,7 +35,7 @@ jobs:
               with:
                 username: ${{ secrets.USERNAME }}
                 password: ${{ env.PERSONAL_GITHUB_TOKEN }}
-                remote_url: https://${{env.PERSONAL_GITHUB_TOKEN}}@github.com/${{secrets.USERNAME}}/github-ci-test.git
+                remote_url: https://${{env.PERSONAL_GITHUB_TOKEN}}@github.com/${{secrets.USERNAME}}/${{ env.PROJECT_NAME }}.git
                 commit_author: ${{ env.COMMIT_AUTHOR }}
                 commit_author_email: ${{ env.COMMIT_EMAILID }}
                 pages_directory: ${{ env.PUBLISH_DIR }}
