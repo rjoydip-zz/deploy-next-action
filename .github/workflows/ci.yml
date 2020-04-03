@@ -15,26 +15,19 @@ jobs:
             matrix:
                 node-version: [10.x] 
         steps:
-            - name: Checkout
+            - name: Checkout, Setup, Install && Build Packages
               uses: actions/checkout@v1
-
-            - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                 node-version: ${{ matrix.node-version }}
-
-            - name: Install Packages
-              run: yarn install
-
-            - name: Build Packages
-              run: yarn deploy
+              run: yarn install && yarn deploy
         
             - name: GitHub Pages Deploy
               uses: appleboy/gh-pages-action@v0.0.2
               with:
                 username: ${{ secrets.USERNAME }}
                 password: ${{ env.PERSONAL_GITHUB_TOKEN }}
-                remote_url: https://${{env.PERSONAL_GITHUB_TOKEN}}@github.com/${{env.GITHUB_USERNAME}}/${{ env.PROJECT_NAME }}.git
+                remote_url: https://${{env.PERSONAL_GITHUB_TOKEN}}@github.com/${{env.GITHUB_USERNAME}}/${{env.PROJECT_NAME}}.git
                 commit_author: ${{ env.COMMIT_AUTHOR }}
                 commit_author_email: ${{ env.COMMIT_EMAILID }}
                 pages_directory: ${{ env.PUBLISH_DIR }}
