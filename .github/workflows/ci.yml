@@ -10,20 +10,15 @@ env:
 
 jobs:
     build:
-        runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                node-version: [10.x] 
+        runs-on: ubuntu-latest 
         steps:
             - name: Checkout
               uses: actions/checkout@v1
 
-            - name: Use Node.js ${{ matrix.node-version }}
+            - name: Use Node, Install && Build Packages
               uses: actions/setup-node@v1
               with:
-                node-version: ${{ matrix.node-version }}
-
-            - name: Install && Build Packages
+                node-version: [10.x]
               run: yarn install && yarn deploy
         
             - name: GitHub Pages Deploy
