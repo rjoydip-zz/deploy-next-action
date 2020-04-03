@@ -1,6 +1,7 @@
 # gitci-next
 
-![gitci-next](https://github.com/rjoydip/github-ci-test/workflows/gitci-next/badge.svg)
+![gitci-next](https://github.com/rjoydip/gitci-next/workflows/gitci-next/badge.svg)
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/430993dc-7bcc-49f2-af7f-01510c34e091/deploy-status)](https://app.netlify.com/sites/gitci-next/deploys)
 
 Deploying/Hosting `next.js` application in `gh-pages`, `zeit`, `netlify`.
