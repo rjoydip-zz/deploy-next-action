@@ -1,10 +1,8 @@
-env:
-  PROJECT_NAME: gitci-next
-
-name: ${{ env.PROJECT_NAME }}
+name: gitci-next
 on: [push, pull_request]
 env: 
   PUBLISH_DIR: out
+  PROJECT_NAME: gitci-next
   COMMIT_AUTHOR: rjoydip (Joydip Roy)
   COMMIT_EMAILID: joydipand@gmail.com
   PERSONAL_GITHUB_TOKEN: ${{secrets.PERSONAL_GITHUB_TOKEN}}
