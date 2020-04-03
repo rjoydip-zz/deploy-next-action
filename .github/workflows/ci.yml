@@ -17,9 +17,9 @@ jobs:
 
             - name: Use Node, Install && Build Packages
               uses: actions/setup-node@v1
+              run: yarn install && yarn deploy
               with:
                 node-version: [10.x]
-              run: yarn install && yarn deploy
         
             - name: GitHub Pages Deploy
               uses: appleboy/gh-pages-action@v0.0.2
