@@ -10,16 +10,21 @@ env:
 
 jobs:
     build:
-        runs-on: ubuntu-latest 
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [10.x] 
         steps:
             - name: Checkout
               uses: actions/checkout@v1
 
-            - name: Use Node, Install && Build Packages
+            - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
-              run: yarn install && yarn deploy
               with:
-                node-version: [10.x]
+                node-version: ${{ matrix.node-version }}
+
+            - name: Install && Build Packages
+              run: yarn install && yarn deploy
         
             - name: GitHub Pages Deploy
               uses: appleboy/gh-pages-action@v0.0.2
