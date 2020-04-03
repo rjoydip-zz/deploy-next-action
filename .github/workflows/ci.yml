@@ -47,6 +47,7 @@ jobs:
                 now-args: '--prod'
                 now-org-id: ${{ env.ZEIT_ORG_ID}}
                 now-project-id: ${{ env.ZEIT_PROJECT_ID}}
+                working-directory: ./
               env:
                 ZEIT_TOKEN: ${{secrets.ZEIT_TOKEN}}
                 ZEIT_ORG_ID: ${{secrets.ZEIT_ORG_ID}}
