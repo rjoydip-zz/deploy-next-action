@@ -5,6 +5,7 @@ env:
   PROJECT_NAME: gitci-next
   COMMIT_AUTHOR: rjoydip (Joydip Roy)
   COMMIT_EMAILID: joydipand@gmail.com
+  GITHUB_USERNAME: rjoydip
   PERSONAL_GITHUB_TOKEN: ${{secrets.PERSONAL_GITHUB_TOKEN}}
 
 jobs:
@@ -27,16 +28,6 @@ jobs:
 
             - name: Build Packages
               run: yarn deploy
-
-            - name: GitHub Pages Deploy
-              uses: appleboy/gh-pages-action@v0.0.2
-              with:
-                username: ${{ secrets.USERNAME }}
-                password: ${{ env.PERSONAL_GITHUB_TOKEN }}
-                remote_url: https://${{env.PERSONAL_GITHUB_TOKEN}}@github.com/${{secrets.USERNAME}}/${{ env.PROJECT_NAME }}.git
-                commit_author: ${{ env.COMMIT_AUTHOR }}
-                commit_author_email: ${{ env.COMMIT_EMAILID }}
-                pages_directory: ${{ env.PUBLISH_DIR }}
 
             - name: ZEIT Now Deployment
               uses: amondnet/now-deployment@v2.0.1
@@ -61,3 +52,13 @@ jobs:
               env:
                 NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
                 NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        
+            - name: GitHub Pages Deploy
+              uses: appleboy/gh-pages-action@v0.0.2
+              with:
+                username: ${{ secrets.USERNAME }}
+                password: ${{ env.PERSONAL_GITHUB_TOKEN }}
+                remote_url: https://${{env.PERSONAL_GITHUB_TOKEN}}@github.com/${{env.GITHUB_USERNAME}}/${{ env.PROJECT_NAME }}.git
+                commit_author: ${{ env.COMMIT_AUTHOR }}
+                commit_author_email: ${{ env.COMMIT_EMAILID }}
+                pages_directory: ${{ env.PUBLISH_DIR }}
